@@ -1,11 +1,10 @@
 /* =========================================================
-                    Ecodigitalidade
-          Paleta: verde musgo + cinza esverdeado
+                    ecodigitabilidade
    ========================================================= */
 
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap');
 
-/* ---------- Variáveis (mexa só aqui para mudar o visual) ---------- */
+/* ---------- coisas pra mudar ---------- */
 
 :root {
   /* Texto */
@@ -18,7 +17,7 @@
   --card: #E8EBE1;
   --line: #BCC2B0;
 
-  /* Verde musgo */
+  /* cor */
   --accent: #6B7F3F;
   --accent-ink: #3F4B24;
   --accent-soft: rgba(107, 127, 63, 0.16);
@@ -40,7 +39,7 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 90px; /* links de âncora não ficam sob o menu fixo */
+  scroll-padding-top: 90px; 
 }
 
 body {
@@ -51,7 +50,7 @@ body {
   font-size: 17px;
   line-height: 1.7;
   -webkit-font-smoothing: antialiased;
-  counter-reset: parte; /* numeração 01, 02, 03... corre a página toda */
+  counter-reset: parte;
 }
 
 ::selection {
@@ -225,7 +224,7 @@ section p a:hover {
   color: var(--accent);
 }
 
-/* Listas (caso use <ul> ou <ol> nas seções) */
+/* Listas*/
 
 section ul,
 section ol {
@@ -242,7 +241,7 @@ section li::marker {
   color: var(--accent);
 }
 
-/* Citações (caso use <blockquote>) */
+/* Citações */
 
 section blockquote {
   max-width: var(--max-width);
@@ -340,10 +339,10 @@ footer a:hover {
 
 /* =========================================================
    FORMULÁRIO DE CADASTRO
-   (cole daqui para baixo se preferir acrescentar ao seu CSS)
+
    ========================================================= */
 
-/* Garante que o botão do menu não fique com fundo branco */
+
 header:has(#menu) button {
   background: none;
   border: 0;
