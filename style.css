@@ -1,21 +1,38 @@
 /* =========================================================
-  Ecodigitalidade — folha de estilos
-
+                     Ecodigitalidade
+          Paleta: verde musgo + cinza esverdeado
    ========================================================= */
 
-@import url('https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=Public+Sans:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap');
+
+/* ---------- Variáveis (mexa só aqui para mudar o visual) ---------- */
 
 :root {
-  --ink: #1A1A18;
-  --muted: #6E6E68;
-  --paper: #FAFAF9;
-  --paper-alt: #F3F2ED;
-  --line: #E3E2DC;
-  --accent: #4B6656;
-  --accent-ink: #2E4038;
+  /* Texto */
+  --ink: #2F312D;
+  --muted: #666B61;
+
+  /* Fundos e linhas */
+  --paper: #DCE0D3;
+  --paper-alt: #CDD2C3;
+  --card: #E8EBE1;
+  --line: #BCC2B0;
+
+  /* Verde musgo */
+  --accent: #6B7F3F;
+  --accent-ink: #3F4B24;
+  --accent-soft: rgba(107, 127, 63, 0.16);
+
+  /* Fontes */
+  --font-titulo: 'Space Grotesk', sans-serif;
+  --font-texto: 'Inter', -apple-system, 'Segoe UI', sans-serif;
+
+  /* Medidas */
   --max-width: 680px;
   --gutter: clamp(20px, 5vw, 64px);
 }
+
+/* ---------- Base ---------- */
 
 * {
   box-sizing: border-box;
@@ -23,25 +40,32 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 90px; /* links de âncora não ficam sob o menu fixo */
 }
 
 body {
   margin: 0;
   background: var(--paper);
   color: var(--ink);
-  font-family: 'Public Sans', -apple-system, sans-serif;
+  font-family: var(--font-texto);
   font-size: 17px;
-  line-height: 1.65;
+  line-height: 1.7;
   -webkit-font-smoothing: antialiased;
+  counter-reset: parte; /* numeração 01, 02, 03... corre a página toda */
 }
 
-/* ---------- Barra de navegação (header que contém #menu) ---------- */
+::selection {
+  background: var(--accent);
+  color: #fff;
+}
+
+/* ---------- Barra de navegação ---------- */
 
 header:has(#menu) {
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  padding: 20px var(--gutter);
+  padding: 16px var(--gutter);
   border-bottom: 1px solid var(--line);
   background: var(--paper);
   position: sticky;
@@ -50,10 +74,13 @@ header:has(#menu) {
 }
 
 .menu-btn {
+  background: none;
+  border: 0;
+  cursor: pointer;
   font-size: 20px;
   line-height: 1;
   padding: 8px 10px;
-  color: var(--ink);
+  color: var(--accent-ink);
   border-radius: 4px;
   transition: background 0.15s ease;
 }
@@ -69,56 +96,57 @@ a:focus-visible {
 }
 
 #menu.ativo {
-  top: 62px;
+  position: absolute;
+  top: 100%;
   right: var(--gutter);
   left: auto;
+  display: flex;
+  flex-direction: column;
+  background: var(--card);
   border: 1px solid var(--line);
   border-radius: 6px;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 8px 24px rgba(40, 50, 25, 0.12);
   padding: 12px;
   gap: 4px;
-  min-width: 160px;
+  min-width: 180px;
 }
 
 #menu a {
   padding: 10px 12px;
   border-radius: 4px;
   font-size: 15px;
+  font-weight: 500;
   color: var(--ink);
+  text-decoration: none;
   transition: background 0.15s ease, color 0.15s ease;
 }
 
 #menu a:hover {
-  background: var(--paper-alt);
+  background: var(--accent-soft);
   color: var(--accent-ink);
 }
 
-/* ---------- Numeração discreta das seções ---------- */
-/* A seção real segue uma sequência: intro > importância > educação > conclusão */
+/* ---------- Título principal (h1) ---------- */
 
-section section {
-  counter-reset: parte;
-}
-
-/* Hero (h1) — sem numeração, é a abertura do texto */
 header:has(h1) {
   max-width: var(--max-width);
   margin: 0 auto;
   padding: clamp(48px, 10vw, 96px) var(--gutter) 32px;
-  border-bottom: 1px solid var(--line);
+  border-bottom: 3px solid var(--accent);
 }
 
 header:has(h1) h1 {
-  font-family: 'Archivo', sans-serif;
+  font-family: var(--font-titulo);
   font-weight: 700;
   font-size: clamp(2rem, 5vw, 2.75rem);
   line-height: 1.15;
   letter-spacing: -0.01em;
   margin: 0;
-  color: var(--ink);
+  color: var(--accent-ink);
 }
 
-/* h2 / h3 — títulos de seção, com número de contexto na margem */
+/* ---------- Títulos de seção (h2 / h3) com numeração ---------- */
+
 header:has(h2),
 header:has(h3) {
   counter-increment: parte;
@@ -132,30 +160,32 @@ header:has(h2)::before,
 header:has(h3)::before {
   content: counter(parte, decimal-leading-zero);
   display: block;
-  font-family: 'Public Sans', sans-serif;
+  font-family: var(--font-texto);
   font-variant-numeric: tabular-nums;
   font-size: 13px;
-  color: var(--muted);
-  letter-spacing: 0.04em;
+  font-weight: 600;
+  color: var(--accent);
+  letter-spacing: 0.06em;
   margin-bottom: 10px;
 }
 
 header:has(h2) h2 {
-  font-family: 'Archivo', sans-serif;
+  font-family: var(--font-titulo);
   font-weight: 600;
   font-size: clamp(1.4rem, 3vw, 1.75rem);
+  line-height: 1.25;
   color: var(--ink);
-  margin: 0 0 8px;
+  margin: 0 0 16px;
   padding-bottom: 16px;
   border-bottom: 1px solid var(--line);
 }
 
 header:has(h3) h3 {
-  font-family: 'Archivo', sans-serif;
+  font-family: var(--font-titulo);
   font-weight: 600;
   font-size: 1.2rem;
   color: var(--accent-ink);
-  margin: 0 0 8px;
+  margin: 0 0 16px;
   padding-bottom: 12px;
   border-bottom: 1px solid var(--line);
 }
@@ -173,8 +203,49 @@ section p + p {
   margin-top: 20px;
 }
 
-section p b {
+section p b,
+section p strong {
   font-weight: 600;
+  color: var(--accent-ink);
+}
+
+section p a {
+  color: var(--accent-ink);
+  text-decoration: underline;
+  text-decoration-color: var(--accent);
+  text-underline-offset: 3px;
+  transition: color 0.15s ease;
+}
+
+section p a:hover {
+  color: var(--accent);
+}
+
+/* Listas (caso use <ul> ou <ol> nas seções) */
+
+section ul,
+section ol {
+  max-width: var(--max-width);
+  margin: 16px auto 0;
+  padding: 0 var(--gutter) 0 calc(var(--gutter) + 20px);
+}
+
+section li {
+  margin-bottom: 8px;
+}
+
+section li::marker {
+  color: var(--accent);
+}
+
+/* Citações (caso use <blockquote>) */
+
+section blockquote {
+  max-width: var(--max-width);
+  margin: 28px auto;
+  padding: 4px var(--gutter);
+  border-left: 3px solid var(--accent);
+  font-style: italic;
   color: var(--accent-ink);
 }
 
@@ -182,11 +253,12 @@ section p b {
 
 img {
   display: block;
-  max-width: var(--max-width);
+  max-width: calc(var(--max-width) - (var(--gutter) * 2));
   width: calc(100% - (var(--gutter) * 2));
   height: auto;
   margin: 32px auto;
   border: 1px solid var(--line);
+  border-radius: 4px;
 }
 
 /* ---------- Rodapé ---------- */
@@ -194,7 +266,7 @@ img {
 footer {
   margin-top: 80px;
   padding: 40px var(--gutter) 56px;
-  border-top: 1px solid var(--line);
+  border-top: 3px solid var(--accent);
   background: var(--paper-alt);
   text-align: left;
 }
@@ -202,6 +274,7 @@ footer {
 footer p {
   max-width: var(--max-width);
   margin: 0 auto 8px;
+  padding: 0 var(--gutter);
   font-size: 14px;
   color: var(--muted);
 }
@@ -211,6 +284,7 @@ footer a {
   font-weight: 600;
   text-decoration: underline;
   text-underline-offset: 3px;
+  transition: color 0.15s ease;
 }
 
 footer a:hover {
@@ -220,9 +294,13 @@ footer a:hover {
 /* ---------- Responsivo ---------- */
 
 @media (max-width: 640px) {
+  body {
+    font-size: 16px;
+  }
+
   header:has(#menu) {
     justify-content: space-between;
-    padding: 16px var(--gutter);
+    padding: 12px var(--gutter);
   }
 
   #menu.ativo {
@@ -233,6 +311,11 @@ footer a:hover {
 
   header:has(h1) {
     padding-top: 40px;
+  }
+
+  header:has(h2),
+  header:has(h3) {
+    margin-top: 48px;
   }
 }
 
@@ -245,6 +328,7 @@ footer a:hover {
 
   .menu-btn,
   #menu a,
+  section p a,
   footer a {
     transition: none;
   }
