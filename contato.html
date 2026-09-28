@@ -9,61 +9,17 @@
     <link rel="stylesheet" href="style.css">
     <title>Entre em contato conosco!</title>
     <!--hamburger-->
-    <style>
-    .menu-btn {
-            font-size: 25px;
-            background: white;
-            border: 0px solid white;
-            cursor: pointer;
-        }
-
-        #menu {
-            display: none;
-        }
-
-        #menu.ativo {
-            display: flex;
-            flex-direction: column;
-            position: absolute;
-            top: 50px;
-            left: 0;
-            background: white;
-            padding: 15px;
-            gap: 10px;
-            border: 1px solid #ccc;
-        }
-
-        #menu a {
-            text-decoration: none;
-            color: black;
-        }
-    
-</style>
-</head>
-<body>
-    <section>
     <header>
+        <button class="menu-btn" onclick="abrirMenu()" aria-label="Abrir menu">☰</button>
 
-
-    <button class="menu-btn" onclick="abrirMenu()">☰</button>
-
-    <nav id="menu">
-        <a href="index.html">Início</a>
-        <a href="sobre.html">Sobre</a>
-        <a href="projetos.html">Projetos</a>
-        <a href="contato.html">Contato</a>
-        <a href="login.html">Login</a>
-    </nav>
-</header>
-
-<script>
-function abrirMenu() {
-    document.getElementById("menu").classList.toggle("ativo");
-}
-</script>
-
-    
-    <section>
+        <nav id="menu">
+            <a href="index.html">Início</a>
+            <a href="sobre.html">Sobre</a>
+            <a href="projetos.html">Projetos</a>
+            <a href="contato.html">Contato</a>
+            <a href="login.html">Login</a>
+        </nav>
+    </header>
 
         <!--comentarios-->
         <section>
@@ -76,7 +32,7 @@ function abrirMenu() {
                     <label for="email">Email:</label><br>
                     <input type="email"><br>
                     <label for="comentarios">Deixe aqui seu comentário!</label><br>
-                    <textarea name="comentarios" id="comentarios" rows="4" cols="50" placeholder="Nos mande sua análise :)"></textarea><br>
+                    <textarea name="comentarios" id="comentarios" rows="4" cols="50" placeholder="Fala tua bosta :)"></textarea><br>
                 
                 <button onclick=>envie seu comentário</button>
 
@@ -85,6 +41,10 @@ function abrirMenu() {
                 </fieldset>
             </form>
         </section>
-    
+    <script>
+        function abrirMenu() {
+            document.getElementById("menu").classList.toggle("ativo");
+        }
+    </script>
 </body>
 </html>
