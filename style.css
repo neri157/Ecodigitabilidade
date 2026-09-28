@@ -95,6 +95,10 @@ a:focus-visible {
   outline-offset: 3px;
 }
 
+#menu {
+  display: none;
+}
+
 #menu.ativo {
   position: absolute;
   top: 100%;
@@ -330,6 +334,139 @@ footer a:hover {
   #menu a,
   section p a,
   footer a {
+    transition: none;
+  }
+}
+
+/* =========================================================
+   FORMULÁRIO DE CADASTRO
+   (cole daqui para baixo se preferir acrescentar ao seu CSS)
+   ========================================================= */
+
+/* Garante que o botão do menu não fique com fundo branco */
+header:has(#menu) button {
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+
+/* A caixinha */
+form {
+  width: min(440px, calc(100% - (var(--gutter) * 2)));
+  margin: 48px auto;
+  padding: clamp(24px, 5vw, 40px);
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  box-shadow: 0 8px 28px rgba(40, 50, 25, 0.08);
+}
+
+form fieldset {
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+
+/* Título "Cadastro" dentro da caixa */
+form h2,
+form h3,
+form legend {
+  font-family: var(--font-titulo);
+  font-weight: 600;
+  font-size: 1.4rem;
+  color: var(--accent-ink);
+  margin: 0 0 8px;
+  padding: 0 0 14px;
+  width: 100%;
+  border-bottom: 1px solid var(--line);
+}
+
+/* Remove as quebras de linha soltas do HTML */
+form br {
+  display: none;
+}
+
+form label {
+  display: block;
+  margin: 18px 0 6px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+form label input {
+  margin-top: 6px;
+}
+
+form input:not([type="submit"]):not([type="checkbox"]):not([type="radio"]),
+form select,
+form textarea {
+  display: block;
+  width: 100%;
+  padding: 12px 14px;
+  font-family: var(--font-texto);
+  font-size: 16px;
+  color: var(--ink);
+  background: #F3F5EE;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+form input::placeholder,
+form textarea::placeholder {
+  color: var(--muted);
+}
+
+form input:not([type="submit"]):focus,
+form select:focus,
+form textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+
+/* Botão "Cadastre-se" */
+form button,
+form input[type="submit"] {
+  display: block;
+  width: 100%;
+  margin-top: 28px;
+  padding: 13px 18px;
+  font-family: var(--font-titulo);
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: #fff;
+  background: var(--accent-ink);
+  border: 0;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.15s ease, transform 0.1s ease;
+}
+
+form button:hover,
+form input[type="submit"]:hover {
+  background: var(--accent);
+}
+
+form button:active,
+form input[type="submit"]:active {
+  transform: translateY(1px);
+}
+
+form button:focus-visible,
+form input[type="submit"]:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  form input,
+  form select,
+  form textarea,
+  form button,
+  form input[type="submit"] {
     transition: none;
   }
 }
