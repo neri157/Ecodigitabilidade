@@ -11,46 +11,92 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="style.css">
+    <script src="main.js" defer></script>
         <title>Login</title>
-        <header>
-        <button class="menu-btn" onclick="abrirMenu()" aria-label="Abrir menu">☰</button>
+        <style>
+    .menu-btn {
+            font-size: 25px;
+            background: white;
+            border: 0px solid white;
+            cursor: pointer;
+        }
 
-        <nav id="menu">
-            <a href="index.html">Início</a>
-            <a href="sobre.html">Sobre</a>
-            <a href="projetos.html">Projetos</a>
-            <a href="contato.html">Contato</a>
-            <a href="login.html">Login</a>
-        </nav>
-    </header>
+        #menu {
+            display: none;
+        }
+
+        #menu.ativo {
+            display: flex;
+            flex-direction: column;
+            position: absolute;
+            top: 50px;
+            left: 0;
+            background: white;
+            padding: 15px;
+            gap: 10px;
+            border: 1px solid #ccc;
+        }
+
+        #menu a {
+            text-decoration: none;
+            color: black;
+        }
+    
+</style>
         
+</section>
+    </head>
+    <body>
+    <section>
+    <header>
+
+
+    <button class="menu-btn" onclick="abrirMenu()">☰</button>
+
+    <nav id="menu">
+        <a href="index.html">Início</a>
+        <a href="sobre.html">Sobre</a>
+        <a href="projetos.html">Projetos</a>
+        <a href="contato.html">Contato</a>
+        <a href="login.html">Login</a>
+    </nav>
+</header>
+
+<script>
+function abrirMenu() {
+    document.getElementById("menu").classList.toggle("ativo");
+}
+</script>
+
+
     
-    
+    <section>
         <header><h1>Login</h1></header>
         <!--caixas de de informacoes-->
         <section>
-<form>
-        
-                <legend>Informações de login</legend>
-                <label for="email">Email:</label>
-                <input type="text" id="email" name="name"><br><br>
-                <label for="senha">Senha:</label>
-                <input type="password" id="senha" name="name"><br>
-                <label for="lembre de mim"><input type="checkbox"> Lembre de mim</label><br><br>
-                <button onclick=>Faça login</button><br>
-                <a href="senha.html" target="_blank">esqueceu sua senha? </a>
-            
 
-                
-                
-            </form>
+        
+            <form id="form-login">
+  <legend>Informações de login</legend>
+
+  <label for="email">Email:</label>
+  <input type="text" id="email" name="email">
+  <span class="erro" id="erro-email"></span><br><br>
+
+  <label for="senha">Senha:</label>
+  <input type="password" id="senha" name="senha">
+  <span class="erro" id="erro-senha"></span><br><br>
+
+  <input type="checkbox" id="lembrar">
+  <label for="lembrar">Lembre de mim</label><br><br>
+
+  <button type="submit">Faça login</button><br>
+  <a href="senha.html" target="_blank">esqueceu sua senha?</a>
+</form>
+
         </section>
 
-        <script>
-        function abrirMenu() {
-            document.getElementById("menu").classList.toggle("ativo");
-        }
-    </script>
+        
     
     </body>
     
