@@ -1,37 +1,21 @@
 /* =========================================================
-                    ecodigitabilidade
+                  Ecodigitalidade 
+
    ========================================================= */
 
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap');
-
-/* ---------- coisas pra mudar ---------- */
+@import url('https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=Public+Sans:wght@400;500;600&display=swap');
 
 :root {
-  /* Texto */
-  --ink: #2F312D;
-  --muted: #666B61;
-
-  /* Fundos e linhas */
-  --paper: #DCE0D3;
-  --paper-alt: #CDD2C3;
-  --card: #E8EBE1;
-  --line: #BCC2B0;
-
-  /* cor */
-  --accent: #6B7F3F;
-  --accent-ink: #3F4B24;
-  --accent-soft: rgba(107, 127, 63, 0.16);
-
-  /* Fontes */
-  --font-titulo: 'Space Grotesk', sans-serif;
-  --font-texto: 'Inter', -apple-system, 'Segoe UI', sans-serif;
-
-  /* Medidas */
+  --ink: #1A1A18;
+  --muted: #6E6E68;
+  --paper: #FAFAF9;
+  --paper-alt: #F3F2ED;
+  --line: #E3E2DC;
+  --accent: #4B6656;
+  --accent-ink: #2E4038;
   --max-width: 680px;
   --gutter: clamp(20px, 5vw, 64px);
 }
-
-/* ---------- Base ---------- */
 
 * {
   box-sizing: border-box;
@@ -39,32 +23,25 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 90px; 
 }
 
 body {
   margin: 0;
   background: var(--paper);
   color: var(--ink);
-  font-family: var(--font-texto);
+  font-family: 'Public Sans', -apple-system, sans-serif;
   font-size: 17px;
-  line-height: 1.7;
+  line-height: 1.65;
   -webkit-font-smoothing: antialiased;
-  counter-reset: parte;
 }
 
-::selection {
-  background: var(--accent);
-  color: #fff;
-}
-
-/* ---------- Barra de navegação ---------- */
+/* ---------- Barra de navegação (header que contém #menu) ---------- */
 
 header:has(#menu) {
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  padding: 16px var(--gutter);
+  padding: 20px var(--gutter);
   border-bottom: 1px solid var(--line);
   background: var(--paper);
   position: sticky;
@@ -73,13 +50,10 @@ header:has(#menu) {
 }
 
 .menu-btn {
-  background: none;
-  border: 0;
-  cursor: pointer;
   font-size: 20px;
   line-height: 1;
   padding: 8px 10px;
-  color: var(--accent-ink);
+  color: var(--ink);
   border-radius: 4px;
   transition: background 0.15s ease;
 }
@@ -94,62 +68,57 @@ a:focus-visible {
   outline-offset: 3px;
 }
 
-#menu {
-  display: none;
-}
-
 #menu.ativo {
-  position: absolute;
-  top: 100%;
+  top: 62px;
   right: var(--gutter);
   left: auto;
-  display: flex;
-  flex-direction: column;
-  background: var(--card);
   border: 1px solid var(--line);
   border-radius: 6px;
-  box-shadow: 0 8px 24px rgba(40, 50, 25, 0.12);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
   padding: 12px;
   gap: 4px;
-  min-width: 180px;
+  min-width: 160px;
 }
 
 #menu a {
   padding: 10px 12px;
   border-radius: 4px;
   font-size: 15px;
-  font-weight: 500;
   color: var(--ink);
-  text-decoration: none;
   transition: background 0.15s ease, color 0.15s ease;
 }
 
 #menu a:hover {
-  background: var(--accent-soft);
+  background: var(--paper-alt);
   color: var(--accent-ink);
 }
 
-/* ---------- Título principal (h1) ---------- */
+/* ---------- Numeração discreta das seções ---------- */
+/* A seção real segue uma sequência: intro > importância > educação > conclusão */
 
+section section {
+  counter-reset: parte;
+}
+
+/* Hero (h1) — sem numeração, é a abertura do texto */
 header:has(h1) {
   max-width: var(--max-width);
   margin: 0 auto;
   padding: clamp(48px, 10vw, 96px) var(--gutter) 32px;
-  border-bottom: 3px solid var(--accent);
+  border-bottom: 1px solid var(--line);
 }
 
 header:has(h1) h1 {
-  font-family: var(--font-titulo);
+  font-family: 'Archivo', sans-serif;
   font-weight: 700;
   font-size: clamp(2rem, 5vw, 2.75rem);
   line-height: 1.15;
   letter-spacing: -0.01em;
   margin: 0;
-  color: var(--accent-ink);
+  color: var(--ink);
 }
 
-/* ---------- Títulos de seção (h2 / h3) com numeração ---------- */
-
+/* h2 / h3 — títulos de seção, com número de contexto na margem */
 header:has(h2),
 header:has(h3) {
   counter-increment: parte;
@@ -163,32 +132,30 @@ header:has(h2)::before,
 header:has(h3)::before {
   content: counter(parte, decimal-leading-zero);
   display: block;
-  font-family: var(--font-texto);
+  font-family: 'Public Sans', sans-serif;
   font-variant-numeric: tabular-nums;
   font-size: 13px;
-  font-weight: 600;
-  color: var(--accent);
-  letter-spacing: 0.06em;
+  color: var(--muted);
+  letter-spacing: 0.04em;
   margin-bottom: 10px;
 }
 
 header:has(h2) h2 {
-  font-family: var(--font-titulo);
+  font-family: 'Archivo', sans-serif;
   font-weight: 600;
   font-size: clamp(1.4rem, 3vw, 1.75rem);
-  line-height: 1.25;
   color: var(--ink);
-  margin: 0 0 16px;
+  margin: 0 0 8px;
   padding-bottom: 16px;
   border-bottom: 1px solid var(--line);
 }
 
 header:has(h3) h3 {
-  font-family: var(--font-titulo);
+  font-family: 'Archivo', sans-serif;
   font-weight: 600;
   font-size: 1.2rem;
   color: var(--accent-ink);
-  margin: 0 0 16px;
+  margin: 0 0 8px;
   padding-bottom: 12px;
   border-bottom: 1px solid var(--line);
 }
@@ -206,49 +173,8 @@ section p + p {
   margin-top: 20px;
 }
 
-section p b,
-section p strong {
+section p b {
   font-weight: 600;
-  color: var(--accent-ink);
-}
-
-section p a {
-  color: var(--accent-ink);
-  text-decoration: underline;
-  text-decoration-color: var(--accent);
-  text-underline-offset: 3px;
-  transition: color 0.15s ease;
-}
-
-section p a:hover {
-  color: var(--accent);
-}
-
-/* Listas*/
-
-section ul,
-section ol {
-  max-width: var(--max-width);
-  margin: 16px auto 0;
-  padding: 0 var(--gutter) 0 calc(var(--gutter) + 20px);
-}
-
-section li {
-  margin-bottom: 8px;
-}
-
-section li::marker {
-  color: var(--accent);
-}
-
-/* Citações */
-
-section blockquote {
-  max-width: var(--max-width);
-  margin: 28px auto;
-  padding: 4px var(--gutter);
-  border-left: 3px solid var(--accent);
-  font-style: italic;
   color: var(--accent-ink);
 }
 
@@ -256,12 +182,11 @@ section blockquote {
 
 img {
   display: block;
-  max-width: calc(var(--max-width) - (var(--gutter) * 2));
+  max-width: var(--max-width);
   width: calc(100% - (var(--gutter) * 2));
   height: auto;
   margin: 32px auto;
   border: 1px solid var(--line);
-  border-radius: 4px;
 }
 
 /* ---------- Rodapé ---------- */
@@ -269,7 +194,7 @@ img {
 footer {
   margin-top: 80px;
   padding: 40px var(--gutter) 56px;
-  border-top: 3px solid var(--accent);
+  border-top: 1px solid var(--line);
   background: var(--paper-alt);
   text-align: left;
 }
@@ -277,7 +202,6 @@ footer {
 footer p {
   max-width: var(--max-width);
   margin: 0 auto 8px;
-  padding: 0 var(--gutter);
   font-size: 14px;
   color: var(--muted);
 }
@@ -287,7 +211,6 @@ footer a {
   font-weight: 600;
   text-decoration: underline;
   text-underline-offset: 3px;
-  transition: color 0.15s ease;
 }
 
 footer a:hover {
@@ -297,13 +220,9 @@ footer a:hover {
 /* ---------- Responsivo ---------- */
 
 @media (max-width: 640px) {
-  body {
-    font-size: 16px;
-  }
-
   header:has(#menu) {
     justify-content: space-between;
-    padding: 12px var(--gutter);
+    padding: 16px var(--gutter);
   }
 
   #menu.ativo {
@@ -314,11 +233,6 @@ footer a:hover {
 
   header:has(h1) {
     padding-top: 40px;
-  }
-
-  header:has(h2),
-  header:has(h3) {
-    margin-top: 48px;
   }
 }
 
@@ -331,141 +245,7 @@ footer a:hover {
 
   .menu-btn,
   #menu a,
-  section p a,
   footer a {
-    transition: none;
-  }
-}
-
-/* =========================================================
-   FORMULÁRIO DE CADASTRO
-
-   ========================================================= */
-
-
-header:has(#menu) button {
-  background: none;
-  border: 0;
-  cursor: pointer;
-}
-
-/* A caixinha */
-form {
-  width: min(440px, calc(100% - (var(--gutter) * 2)));
-  margin: 48px auto;
-  padding: clamp(24px, 5vw, 40px);
-  background: var(--card);
-  border: 1px solid var(--line);
-  border-radius: 12px;
-  box-shadow: 0 8px 28px rgba(40, 50, 25, 0.08);
-}
-
-form fieldset {
-  border: 0;
-  margin: 0;
-  padding: 0;
-}
-
-/* Título "Cadastro" dentro da caixa */
-form h2,
-form h3,
-form legend {
-  font-family: var(--font-titulo);
-  font-weight: 600;
-  font-size: 1.4rem;
-  color: var(--accent-ink);
-  margin: 0 0 8px;
-  padding: 0 0 14px;
-  width: 100%;
-  border-bottom: 1px solid var(--line);
-}
-
-/* Remove as quebras de linha soltas do HTML */
-form br {
-  display: none;
-}
-
-form label {
-  display: block;
-  margin: 18px 0 6px;
-  font-size: 14px;
-  font-weight: 600;
-  color: var(--ink);
-}
-
-form label input {
-  margin-top: 6px;
-}
-
-form input:not([type="submit"]):not([type="checkbox"]):not([type="radio"]),
-form select,
-form textarea {
-  display: block;
-  width: 100%;
-  padding: 12px 14px;
-  font-family: var(--font-texto);
-  font-size: 16px;
-  color: var(--ink);
-  background: #F3F5EE;
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  transition: border-color 0.15s ease, box-shadow 0.15s ease;
-}
-
-form input::placeholder,
-form textarea::placeholder {
-  color: var(--muted);
-}
-
-form input:not([type="submit"]):focus,
-form select:focus,
-form textarea:focus {
-  outline: none;
-  border-color: var(--accent);
-  box-shadow: 0 0 0 3px var(--accent-soft);
-}
-
-/* Botão "Cadastre-se" */
-form button,
-form input[type="submit"] {
-  display: block;
-  width: 100%;
-  margin-top: 28px;
-  padding: 13px 18px;
-  font-family: var(--font-titulo);
-  font-size: 16px;
-  font-weight: 600;
-  letter-spacing: 0.01em;
-  color: #fff;
-  background: var(--accent-ink);
-  border: 0;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background 0.15s ease, transform 0.1s ease;
-}
-
-form button:hover,
-form input[type="submit"]:hover {
-  background: var(--accent);
-}
-
-form button:active,
-form input[type="submit"]:active {
-  transform: translateY(1px);
-}
-
-form button:focus-visible,
-form input[type="submit"]:focus-visible {
-  outline: 2px solid var(--accent);
-  outline-offset: 3px;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  form input,
-  form select,
-  form textarea,
-  form button,
-  form input[type="submit"] {
     transition: none;
   }
 }
